@@ -7,6 +7,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "boltdb-scala",
     libraryDependencies ++= List(
+      "com.softwaremill.magnolia1_3" %% "magnolia" % "1.2.6",
       "org.scalameta" %% "munit" % "0.7.29" % Test,
       "org.scalameta" %% "munit-scalacheck" % "0.7.29" % Test
     )
