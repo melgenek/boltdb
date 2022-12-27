@@ -12,6 +12,8 @@ object Types extends PageIdList {
     def apply(v: Long): PageId = v
 
     def apply(v: UInt32): PageId = v
+
+    val format: MemorySegmentFormat[PageId] = MemorySegmentFormat[Long]
   }
 
   extension (value: PageId) {

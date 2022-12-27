@@ -1,5 +1,6 @@
 import boltdb.types.MemorySegmentAccessors.*
 import boltdb.types.MemorySegmentFormat
+import boltdb.types.Types.PageId
 
 import java.io.{File, RandomAccessFile}
 import java.lang.foreign.MemoryLayout.PathElement
@@ -10,7 +11,7 @@ import scala.collection.IndexedSeqView
 
 case class Leaf(key: Int, value: Int)derives MemorySegmentFormat
 
-case class Example(value1: Int, value3: Int, value2: Short, value4: Long, value5: Long,
+case class Example(value1: PageId, value3: Int, value2: Short, value4: Long, value5: Long,
                    leaves: MemorySegment)derives MemorySegmentFormat
 
 @main
@@ -23,7 +24,7 @@ def main(): Unit = {
 
   val segment = MemorySegment.allocateNative(100, SegmentScope.auto())
 
-  val example = Example(111, 222, 333, 444, 555, segment)
+  val example = Example(111L, 222, 333, 444, 555, segment)
   println("example size:" + MemorySegmentFormat[Example].byteSize)
   println("leaf size:" + MemorySegmentFormat[Leaf].byteSize)
 
